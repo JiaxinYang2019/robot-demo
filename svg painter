@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>杨嘉欣 · 机器人项目演示</title>
+    <style>
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 0 20px;
+            line-height: 1.6;
+            color: #1e2a3a;
+            background: #f9fafb;
+        }
+        h1 {
+            font-size: 2rem;
+            border-left: 4px solid #3b82f6;
+            padding-left: 1rem;
+            margin-top: 0;
+        }
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 */
+            height: 0;
+            overflow: hidden;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1);
+            margin: 2rem 0;
+        }
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1.5rem 0;
+        }
+        .tag {
+            background: #e2e8f0;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: #1e40af;
+        }
+        .section {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 16px;
+            margin: 1.5rem 0;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+        hr {
+            margin: 2rem 0;
+            border: 0;
+            height: 1px;
+            background: #e2e8f0;
+        }
+        .footer {
+            font-size: 0.85rem;
+            color: #64748b;
+            text-align: center;
+            margin-top: 2rem;
+        }
+        a {
+            color: #3b82f6;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>🤖 机械臂 SVG 绘图系统</h1>
+    <p>任意 SVG 图形 → 机器人轨迹 → 高精度绘制</p>
+
+    <div class="video-container">
+        <!-- 嵌入 B 站视频（私密链接依然有效） -->
+        <iframe src="https://www.bilibili.com/video/BV1Z6XxBvERr/?spm_id_from=333.1387.homepage.video_card.click&vd_source=856202b1fa696362f46712cc3cc14b9f"
+                scrolling="no"
+                frameborder="no"
+                allowfullscreen="true">
+        </iframe>
+    </div>
+
+    <div class="tags">
+        <span class="tag">SVG 路径解析</span>
+        <span class="tag">贝塞尔曲线离散化</span>
+        <span class="tag">运动学逆解</span>
+        <span class="tag">笛卡尔速度规划</span>
+        <span class="tag">TCP 标定</span>
+        <span class="tag">误差补偿</span>
+    </div>
+
+    <div class="section">
+        <h2>📌 项目简介</h2>
+        <p>在 Neura Robotics 实习期间，独立开发了从 SVG 矢量图到机械臂轨迹的完整转换与控制方案。支持任意 SVG 图形（如猫猫、Logo、文字），实现高精度绘图，绘制误差 ≤ 0.2mm。</p>
+    </div>
+
+    <div class="section">
+        <h2>⚙️ 核心技术难点与解决方案</h2>
+        <ul>
+            <li><strong>贝塞尔曲线/弧线离散化</strong>：采用自适应细分算法，曲率大的区域加密采样，保证轮廓平滑且轨迹点不过密。</li>
+            <li><strong>运动学逆解与奇异性处理</strong>：基于数值优化逆解器，优先选择与前一姿态最接近的解，奇异区域插入微调过渡姿态。</li>
+            <li><strong>速度规划与平滑</strong>：笛卡尔空间 S 形速度规划 + 路径段间圆弧过渡，避免急停和振动。</li>
+            <li><strong>坐标系标定</strong>：三点标定法将 SVG 虚拟坐标系映射到机器人基坐标系，并补偿 TCP 误差。</li>
+            <li><strong>实时通信与安全</strong>：高速通信 + 缓冲区机制，实时监控关节限位与工作空间，确保安全。</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>🔗 相关资源</h2>
+        <p>📄 项目详细技术报告：<em>（可附 GitHub 链接或说明，如有）</em><br>
+        🎥 完整演示视频：上方播放器<br>
+        💻 代码因公司知识产权暂不公开，技术方案详见本文。</p>
+    </div>
+
+    <hr>
+
+    <div class="footer">
+        📧 18372789885@163.com · 杨嘉欣 · 2026
+    </div>
+</body>
+</html>
